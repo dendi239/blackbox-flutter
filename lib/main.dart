@@ -1,3 +1,4 @@
+import 'scenes/levels_list.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -10,10 +11,9 @@ class MyApp extends StatelessWidget {
     home: Scaffold(
       appBar: AppBar(
         title: Text('Blackbox'),
+        // todo: add info button here
       ),
-      body: Center(
-        child: Text('Blackbox game will be there'),
-      ),
+      body: LevelListWidget(),
     ),
   );
 }
