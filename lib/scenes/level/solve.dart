@@ -55,21 +55,23 @@ class _SolveWidget extends State<SolveWidget> {
   @override 
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text('Question $tries / $solveTriesCount'),
-      content: Container(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('$number -> ?'),
-            TextField(
-              autofocus: true,
-              keyboardAppearance: Theme.of(context).brightness,
-              keyboardType: TextInputType.number,
-              onChanged: (text) => guess = num.parse(text),
-              onEditingComplete: () => _guess(number, guess),
-            ),
-          ],
-        ),
+      title: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text('Question $tries / $solveTriesCount'),
+          Text(
+            '$number -> ?', 
+            style: Theme.of(context).textTheme.subhead,
+          ),
+        ],
+      ),
+      content: TextField(
+        autofocus: true,
+        keyboardAppearance: Theme.of(context).brightness,
+        keyboardType: TextInputType.number,
+        onChanged: (text) => guess = num.parse(text),
+        onEditingComplete: () => _guess(number, guess),
       ),
       actions: <Widget>[
         FlatButton(
