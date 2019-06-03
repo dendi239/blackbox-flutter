@@ -8,8 +8,8 @@ abstract class LevelModel {
   num ask(num input);
   
   bool check(num input, num output) => ask(input) == output;
-  
-  num generate({ num min = 1, num max = 1000 * 1000 }) => Random().nextInt(max)
+
+  num generate({ num min = 1, num max = 1000 * 1000 }) => Random().nextInt(max - min) + min;
 }
 
 class SimpleLevelModel extends LevelModel {
