@@ -1,5 +1,6 @@
-import 'scenes/levels_list.dart';
 import 'package:flutter/material.dart';
+
+import 'scenes/levels_list.dart';
 
 void main() => runApp(MyApp());
 
