@@ -7,8 +7,8 @@ class LevelListWidget extends StatefulWidget {
 
   // todo: get (or inject) levels somehow
   final List<LevelModel> list = [
-    SimpleLevelModel('1', '1st lvl', null),
-    SimpleLevelModel('2', '2nd lvl', null),
+    SimpleLevelModel('1', '1st lvl', (number) => number + 1),
+    SimpleLevelModel('2', '2nd lvl', (number) => number ~/ 3 + 1),
     SimpleLevelModel('3', '3rd lvl', null),
     SimpleLevelModel('4', '4th lvl', null),
     SimpleLevelModel('5', '5th lvl', null),
@@ -28,8 +28,9 @@ class _LevelListWidget extends State<LevelListWidget> {
   _LevelListWidget(this.levels, this.completed);
 
   Level _buildLevel(LevelModel model) => Level(
-    name: model.name,
+    level: model,
     onSolve: (solved) => setState(() {
+      Navigator.of(context).pop();
       if (solved) {
         completed.add(model);
       } else {
