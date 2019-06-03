@@ -1,18 +1,13 @@
 import 'package:flutter/material.dart';
 
 import 'package:blackbox/model/level.dart';
+import 'package:blackbox/model/levels.dart';
 import 'level/level.dart';
 
 class LevelListWidget extends StatefulWidget {
 
   // todo: get (or inject) levels somehow
-  final List<LevelModel> list = [
-    SimpleLevelModel('1', '1st lvl', (number) => number + 1),
-    SimpleLevelModel('2', '2nd lvl', (number) => number ~/ 3 + 1),
-    SimpleLevelModel('3', '3rd lvl', null),
-    SimpleLevelModel('4', '4th lvl', null),
-    SimpleLevelModel('5', '5th lvl', null),
-  ];
+  final List<LevelModel> list = Levels.levels;
 
   final Set<LevelModel> completedList = Set();
 
