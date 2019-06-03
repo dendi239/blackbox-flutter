@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:blackbox/model/level.dart';
-import 'level.dart';
+import 'level/level.dart';
 
 class LevelListWidget extends StatefulWidget {
 
