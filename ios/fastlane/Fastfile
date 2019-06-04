@@ -1,0 +1,45 @@
+default_platform(:ios)
+
+platform :ios do
+  before_all do
+    cocoapods(repo_update: true)
+    xcversion(version: "~> 10.0")
+    increment_build_number(
+        build_number: ENV['BUILD_NUMBER']
+    )
+  end
+
+    lane :build_achive do
+      profile_uuid = sigh(adhoc: true)
+      disable_automatic_code_signing(path: "./Runner.xcodeproj",)
+
+      gym(
+        xcargs: "PROVISIONING_PROFILE_SPECIFIER='#{profile_uuid}' CODE_SIGN_IDENTITY='iPhone Distribution'",
+        export_method: "ad-hoc",
+        export_xcargs: "-allowProvisioningUpdates",
+        export_options: {
+            compileBitcode: false,
+        }
+      )
+    end
+
+
+    desc "Main lane used for publishing to HockeyApp"
+    lane :beta do
+      build_achive
+      appcenter_upload(
+        api_token: ENV["APPCENTER_API_TOKEN"],
+        owner_name: ENV["APPCENTER_OWNER_NAME"],
+        app_name: "blackbox-flutter",
+        ipa: lane_context[SharedValues::IPA_OUTPUT_PATH],
+      )
+    end
+
+  desc "Test fastlane without publishing rights"
+  lane :develop do
+      enable_automatic_code_signing
+      gym(export_method: "development")
+  end
+
+end
+
