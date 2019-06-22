@@ -72,7 +72,7 @@ class _LevelListWidget extends State<LevelListWidget> {
         MaterialPageRoute(
           builder: (context) => _buildLevel(levelModel),
         ),
-      ),  
+      ),
       child: Text(levelModel.name),
     );
   }
